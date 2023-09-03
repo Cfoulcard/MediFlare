@@ -1,5 +1,7 @@
 package com.christianfoulcard.mediflare.ui
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -27,13 +29,13 @@ class LoginScreenActivity : ComponentBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DisplayLayout()
+            DisplayLayout(this, this)
         }
     }
 }
 
 @Composable
-fun DisplayLayout() {
+fun DisplayLayout(context: Context, activity: Activity) {
     MediFlareTheme {
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
         val offsetHeight = screenHeight * 0.33f
@@ -54,13 +56,13 @@ fun DisplayLayout() {
                     Spacer(Modifier.size(30.dp))
                     PasswordTextField()
                     Spacer(Modifier.size(30.dp))
-                    LoginButton()
+                    LoginButton(context, activity)
                 }
             }
             Box(contentAlignment = Alignment.BottomCenter) {
                 Text(
                     "Version 1.0.0",
-                    modifier = Modifier.padding(32.dp)
+                    modifier = Modifier.padding(64.dp)
                 )
             }
         }
@@ -71,5 +73,5 @@ fun DisplayLayout() {
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    DisplayLayout()
+    DisplayLayout(LoginScreenActivity(), LoginScreenActivity())
 }

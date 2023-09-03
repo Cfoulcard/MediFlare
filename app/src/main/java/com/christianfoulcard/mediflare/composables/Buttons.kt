@@ -1,5 +1,8 @@
 package com.christianfoulcard.mediflare.composables
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,14 +19,21 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.christianfoulcard.mediflare.R
+import com.christianfoulcard.mediflare.ui.HomeScreenActivity
+import com.christianfoulcard.mediflare.ui.LoginScreenActivity
 
 object Buttons {
 
     @Composable
-    fun LoginButton() {
+    fun LoginButton(context: Context, activity: Activity) {
         Button(
-            onClick = { },
+            onClick = {
+                activity.startActivity(Intent(context, HomeScreenActivity::class.java))
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                activity.finish()
+            },
             shape = RoundedCornerShape(100.dp),
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.button_blue)),
             modifier = Modifier

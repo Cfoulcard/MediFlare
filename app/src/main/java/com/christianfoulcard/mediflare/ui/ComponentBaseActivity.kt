@@ -8,7 +8,8 @@ abstract class ComponentBaseActivity: ComponentActivity() {
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            SystemUi().hideSystemUIFull(this)
+           // SystemUi().hideSystemUIFull(this)
+            SystemUi().whiteStatusAndNavBars(this)
         }
 
         override fun onStart() {

@@ -28,6 +28,12 @@
             android:label="LoginScreen"
             android:parentActivityName=".ui.SplashScreenActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.HomeScreenActivity"
+            android:label="HomeScreen"
+            android:parentActivityName=".ui.SplashScreenActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
