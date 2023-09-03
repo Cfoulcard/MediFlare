@@ -1,5 +1,6 @@
 package com.christianfoulcard.mediflare.composables
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -26,20 +28,63 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.BottomNavTabs.EvenlySpacedBottomNavigationBar
+import com.christianfoulcard.mediflare.ui.homeScreenFragments.DashboardFragmentContent
+import com.christianfoulcard.mediflare.utils.BottomNavRoutes
+import com.christianfoulcard.mediflare.utils.LogUtils.TAG
 
 object BottomNavTabs {
 
     @Composable
-    fun EvenlySpacedBottomNavigationBar() {
-        // Keeping track of the selected tab
-        var selectedTab by remember { mutableStateOf(1) }
+    fun MainScreenWithBottomNav() {
+        val navController = rememberNavController()
 
-        val items = listOf(
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            // This will occupy the majority of the screen except for the bottom bar
+            Box(
+                modifier = Modifier.weight(1f)
+            ) {
+                NavHost(navController, startDestination = BottomNavRoutes.DASHBOARD.route) {
+                    composable(BottomNavRoutes.DASHBOARD.route) {
+                        DashboardFragmentContent()
+                        Log.d(TAG, "MainScreenWithBottomNav: test dashboard")
+                    }
+                    composable(BottomNavRoutes.PATIENTS.route) {
+                        DashboardFragmentContent()
+                        Log.d(TAG, "MainScreenWithBottomNav: test patients")
+                    }
+                    composable(BottomNavRoutes.MANAGEMENT.route) {
+                        DashboardFragmentContent()
+                        Log.d(TAG, "MainScreenWithBottomNav: test management")
+                    }
+                }
+            }
+            EvenlySpacedBottomNavigationBar(navController)
+        }
+    }
+
+    @Composable
+    fun EvenlySpacedBottomNavigationBar(navController: NavController) {
+        // Keeping track of the selected tab
+        var selectedTab by remember { mutableStateOf(BottomNavRoutes.DASHBOARD.route) }
+
+        val imageVectors = listOf(
             R.drawable.address_card,
             R.drawable.fire_flame,
             R.drawable.laptop_medical_solid,
+        )
+
+        val navItems = listOf(
+            BottomNavRoutes.PATIENTS,
+            BottomNavRoutes.DASHBOARD,
+            BottomNavRoutes.MANAGEMENT
         )
 
         BottomAppBar(
@@ -50,14 +95,22 @@ object BottomNavTabs {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                items.forEachIndexed { index, drawableResId ->
+                imageVectors.forEachIndexed { index, drawableResId ->
                     BottomNavigationItem(
                         iconResId = drawableResId,
-                        isSelected = selectedTab == index,
-                        onSelected = { selectedTab = index },
+                        isSelected = selectedTab == navItems[index].route,
+                        onSelected = {
+                            selectedTab = navItems[index].route
+                            navController.navigate(navItems[index].route) {
+                                popUpTo(navController.graph.startDestinationId)
+                                launchSingleTop = true
+                            }
+                            Log.d("BottomAppBar", "nav index route is ${navItems[index].route}")
+                            Log.d("BottomAppBar", "selectedTab is ${selectedTab}")
+                        },
                         modifier = Modifier.weight(1f), // This ensures each item is evenly spaced
                         inactiveColor = colorResource(id = R.color.light_gray),
-                        activeColor = colorResource(id = R.color.logo_blue)
+                        activeColor = colorResource(id = R.color.logo_blue),
                     )
                 }
             }
@@ -72,7 +125,7 @@ object BottomNavTabs {
         onSelected: () -> Unit,
         activeColor: Color,
         inactiveColor: Color,
-        modifier: Modifier
+        modifier: Modifier,
     ) {
         Column(
             modifier = modifier.clickable { onSelected() },
@@ -109,8 +162,9 @@ object BottomNavTabs {
 }
 
 
-    @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {
-    EvenlySpacedBottomNavigationBar()
+        val navController = rememberNavController()
+        EvenlySpacedBottomNavigationBar(navController)
 }

@@ -52,6 +52,7 @@ dependencies {
     val kotlinVersion = "1.10.1"
     val lifecycleRuntimeVersion = "2.6.1"
     val composeVersion = "1.7.2"
+    val navComposeVersion = "2.7.1"
     val jUnitTestVersion = "4.13.2"
     val jUnitInstrumentationTestVersion = "1.1.5"
     val espressoVersion = "3.5.1"
@@ -64,6 +65,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation ("androidx.navigation:navigation-compose:$navComposeVersion")
     testImplementation("junit:junit:$jUnitTestVersion")
     androidTestImplementation("androidx.test.ext:junit:$jUnitInstrumentationTestVersion")
     androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
@@ -71,5 +73,5 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("com.exyte:animated-navigation-bar:1.0.0")
+
 }
