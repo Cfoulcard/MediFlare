@@ -14,8 +14,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.christianfoulcard.mediflare.R
 
 object TextFields {
 
@@ -24,20 +28,26 @@ object TextFields {
     fun UsernameAndEmailTextField(modifier: Modifier = Modifier) {
 
         var text by remember { mutableStateOf("") }
+        var isFocused by remember { mutableStateOf(false) }
 
         OutlinedTextField(
             value = text,
-            placeholder = { Text("Email / Username") },  // Optional, visible when the field is empty
+            placeholder = { Text(stringResource(R.string.email_username)) },
                     onValueChange = { text = it },
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
-                focusedIndicatorColor = Color.Black,  // Adjust as needed
-                unfocusedIndicatorColor = Color.Black  // Adjust as needed
+                focusedIndicatorColor = Color.Black,
+                unfocusedIndicatorColor = Color.Black
             ),
             modifier = modifier
                 .fillMaxWidth(0.75F)
-                .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(100.dp))  // Adjust border width and color as needed
-                .clip(shape = RoundedCornerShape(100.dp)))
+                .border(
+                    width = 2.dp,
+                    color = if (isFocused) colorResource(R.color.logo_blue)
+                    else colorResource(R.color.dark_gray), shape = RoundedCornerShape(100.dp)
+                )
+                .clip(shape = RoundedCornerShape(100.dp))
+                .onFocusChanged { isFocused = it.isFocused })
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -45,20 +55,26 @@ object TextFields {
     fun PasswordTextField(modifier: Modifier = Modifier) {
 
         var text by remember { mutableStateOf("") }
+        var isFocused by remember { mutableStateOf(false) }
 
         OutlinedTextField(
             value = text,
-            placeholder = { Text("Password") },  // Optional, visible when the field is empty
+            placeholder = { Text(stringResource(R.string.password)) },
             onValueChange = { text = it },
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
-                focusedIndicatorColor = Color.Black,  // Adjust as needed
-                unfocusedIndicatorColor = Color.Black  // Adjust as needed
+                focusedIndicatorColor = Color.Black,
+                unfocusedIndicatorColor = Color.Black
             ),
             modifier = modifier
                 .fillMaxWidth(0.75F)
-                .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(100.dp))  // Adjust border width and color as needed
-                .clip(shape = RoundedCornerShape(100.dp)))
+                .border(
+                    width = 2.dp,
+                    color = if (isFocused) colorResource(R.color.logo_blue)
+                    else colorResource(R.color.dark_gray), shape = RoundedCornerShape(100.dp)
+                )
+                .clip(shape = RoundedCornerShape(100.dp))
+                .onFocusChanged { isFocused = it.isFocused })
     }
 
 }

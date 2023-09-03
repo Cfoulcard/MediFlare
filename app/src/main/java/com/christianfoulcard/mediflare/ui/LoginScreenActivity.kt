@@ -1,4 +1,4 @@
-package com.christianfoulcard.mediflare
+package com.christianfoulcard.mediflare.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -21,7 +21,6 @@ import com.christianfoulcard.mediflare.composables.Buttons.LoginButton
 import com.christianfoulcard.mediflare.composables.Images.MediFlareLogo
 import com.christianfoulcard.mediflare.composables.TextFields.PasswordTextField
 import com.christianfoulcard.mediflare.composables.TextFields.UsernameAndEmailTextField
-import com.christianfoulcard.mediflare.ui.ComponentBaseActivity
 import com.christianfoulcard.mediflare.ui.theme.MediFlareTheme
 
 class LoginScreenActivity : ComponentBaseActivity() {
@@ -37,7 +36,7 @@ class LoginScreenActivity : ComponentBaseActivity() {
 fun DisplayLayout() {
     MediFlareTheme {
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
-        val offsetHeight = screenHeight * 0.33f  // or use 0.33f for 33%
+        val offsetHeight = screenHeight * 0.33f
 
         Surface(modifier = Modifier.fillMaxSize()) {
             Box(
@@ -56,7 +55,6 @@ fun DisplayLayout() {
                     PasswordTextField()
                     Spacer(Modifier.size(30.dp))
                     LoginButton()
-
                 }
             }
             Box(contentAlignment = Alignment.BottomCenter) {
@@ -72,6 +70,6 @@ fun DisplayLayout() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun Preview() {
     DisplayLayout()
 }
