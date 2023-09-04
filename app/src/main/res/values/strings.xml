@@ -3,4 +3,17 @@
     <string name="email_username">Email / Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="total_admissions">Total Admissions</string>
+    <string name="total_patients">Total Patients</string>
+    <string name="bed_occupancy_rate">Bed Occupancy Rate</string>
+    <string name="vehicles_in_use">Vehicles In Use</string>
+    <string name="lab_test_results">Lab Test Results</string>
+    <string name="surgeries_in_queue">Surgeries in Queue</string>
+    <string name="average_waiting_time">Average Waiting Time</string>
+    <string name="pss">PSS</string>
+    <string name="rx_comp_rate">Rx Comp. Rate</string>
+    <string name="staff_patient_ratio">Staff-Patient Ratio</string>
+    <string name="diagnosis_ar">Diagnosis AR</string>
+    <string name="rx_error_rate">RX Error Rate</string>
+    <string name="current_status">Current Status</string>
 </resources>
