@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,7 +60,7 @@ fun DashboardFragmentContent() {
                 Spacer(Modifier.padding(16.dp))
                 FragmentTitle(stringResource(id = R.string.current_status), Modifier.fillMaxWidth())
                 Spacer(Modifier.padding(16.dp))
-                StatusCardGrid()
+                StatusCardGrid(viewModel)
             }
         }
     }
@@ -93,59 +94,37 @@ fun WelcomeCard(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun StatusCardGrid() {
+fun StatusCardGrid(viewModel: DashboardViewModel) {
 
-    val statusCards by remember { mutableStateOf(listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")) }
+    var isSorted by remember { mutableStateOf(false) }
+
+    Button(onClick = {
+        if (isSorted) {
+            viewModel.resetStatusCards()
+        } else {
+            viewModel.sortStatusCards()
+        }
+        isSorted = !isSorted
+    },
+        modifier = Modifier.fillMaxWidth()) {
+        Text(text = if (isSorted) stringResource(R.string.unsort) else stringResource(R.string.sort_alphabetically))
+    }
+
+    val sortedCards = if (isSorted) {
+        viewModel.statusCards.value.sortedBy { card -> card.title }
+    } else {
+        viewModel.statusCards.value
+    }
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp),
         modifier = Modifier.padding(horizontal = 0.dp),
     ) {
 
-        items(statusCards) { item ->
-            when (item) {
-                "1" -> {
-                    StatusCard(stringResource(R.string.total_admissions),"34")
-                }
-                "2" -> {
-                    StatusCard(stringResource(R.string.total_patients),"27")
-              }
-                "3" -> {
-                    StatusCard(stringResource(R.string.bed_occupancy_rate),"49%")
-                }
-                "4" -> {
-                    StatusCard(stringResource(R.string.vehicles_in_use),"3")
-                }
-                "5" -> {
-                    StatusCard(stringResource(R.string.lab_test_results),"7")
-                }
-                "6" -> {
-                    StatusCard(stringResource(R.string.surgeries_in_queue),"1")
-                }
-                "7" -> {
-                    StatusCard(stringResource(R.string.average_waiting_time),"5 mins")
-                }
-                "8" -> {
-                    StatusCard(stringResource(R.string.pss),"9")
-                }
-                "9" -> {
-                    StatusCard(stringResource(R.string.rx_comp_rate),"67%")
-                }
-                "10" -> {
-                    StatusCard(stringResource(R.string.staff_patient_ratio),"3:1")
-                }
-                "11" -> {
-                    StatusCard(stringResource(R.string.diagnosis_ar),"95%")
-                }
-                "12" -> {
-                    StatusCard(stringResource(R.string.rx_error_rate),"5%")
-                }
-                else -> {
-
-                }
-            }
-
+        items(sortedCards) { item ->
+            StatusCard(item.title, item.subtitle)
         }
+
     }
 }
 

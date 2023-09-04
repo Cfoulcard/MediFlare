@@ -16,4 +16,6 @@
     <string name="diagnosis_ar">Diagnosis AR</string>
     <string name="rx_error_rate">RX Error Rate</string>
     <string name="current_status">Current Status</string>
+    <string name="unsort">Unsort</string>
+    <string name="sort_alphabetically">Sort Alphabetically</string>
 </resources>
