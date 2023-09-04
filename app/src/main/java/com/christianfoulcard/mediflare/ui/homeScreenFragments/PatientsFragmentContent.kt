@@ -219,6 +219,35 @@ fun PatientInfoView(patient: PatientCardData) {
                 ) {
                     Spacer(Modifier.padding(16.dp))
                     Text.FragmentTitle(patient.patientName)
+
+                    Column(horizontalAlignment = Alignment.Start,
+                        modifier = Modifier
+                            .align(Alignment.Start)
+                            .padding(start = LocalConfiguration.current.screenWidthDp.dp * 0.10F)
+                    ) {
+                        Spacer(Modifier.padding(16.dp))
+                        Text(text = "ID: ${patient.patientId}")
+                        Text(text = "Age: ${patient.age}")
+                        Text(text = "Admission Date: ${patient.admissionDate}")
+                        Text(text = "Last Updated: ${patient.lastUpdated}")
+                        Text(text = "Diagnosis: ${patient.illnessDiagnosis}")
+                        Text(text = when (val statusOrCare = patient.statusOrCaredForBy) {
+                            is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
+                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName })
+                        Spacer(Modifier.padding(16.dp))
+                        Text(text = "Vital Signs:")
+                        Text(text = "•\t Temperature: ${patient.vitalSigns?.temperature}")
+                        Text(text = "•\t Heart Rate: ${patient.vitalSigns?.heartRate}")
+                        Text(text = "•\t Blood Pressure: ${patient.vitalSigns?.bloodPressure}")
+                        Text(text = "•\t Respiratory Rate: ${patient.vitalSigns?.respiratoryRate}")
+                        Text(text = "•\t Oxygen Saturation: ${patient.vitalSigns?.oxygenSaturation}")
+                        Spacer(Modifier.padding(16.dp))
+                        Text(text = "Treatment Plan:")
+                        Text(text = "Medications:")
+                        Text(text = "•\t Name: ${patient.treatmentPlan.antibiotics.name}")
+                        Text(text = "•\t Dosage: ${patient.treatmentPlan.antibiotics.dosage}")
+                        Text(text = "•\t Frequency: ${patient.treatmentPlan.antibiotics.frequency}")
+                    }
                 }
             }
         }
