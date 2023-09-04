@@ -35,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.BottomNavTabs.EvenlySpacedBottomNavigationBar
 import com.christianfoulcard.mediflare.ui.homeScreenFragments.DashboardFragmentContent
+import com.christianfoulcard.mediflare.ui.homeScreenFragments.PatientsFragmentContent
 import com.christianfoulcard.mediflare.utils.BottomNavRoutes
 import com.christianfoulcard.mediflare.utils.LogUtils.TAG
 
@@ -57,7 +58,7 @@ object BottomNavTabs {
                         Log.d(TAG, "MainScreenWithBottomNav: test dashboard")
                     }
                     composable(BottomNavRoutes.PATIENTS.route) {
-                        DashboardFragmentContent()
+                        PatientsFragmentContent()
                         Log.d(TAG, "MainScreenWithBottomNav: test patients")
                     }
                     composable(BottomNavRoutes.MANAGEMENT.route) {
