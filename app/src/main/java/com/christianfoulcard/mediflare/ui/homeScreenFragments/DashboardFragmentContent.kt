@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -37,10 +38,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.christianfoulcard.mediflare.R
+import com.christianfoulcard.mediflare.composables.Text.FragmentTitle
+import com.christianfoulcard.mediflare.ui.viewmodels.DashboardViewModel
 
 @Composable
 fun DashboardFragmentContent() {
+
+    val viewModel: DashboardViewModel = viewModel()
+
     Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
             Column(
@@ -50,7 +57,7 @@ fun DashboardFragmentContent() {
                 Spacer(Modifier.padding(32.dp))
                 WelcomeCard()
                 Spacer(Modifier.padding(16.dp))
-                CurrentStatusTitle(Modifier.fillMaxWidth())
+                FragmentTitle(stringResource(id = R.string.current_status), Modifier.fillMaxWidth())
                 Spacer(Modifier.padding(16.dp))
                 StatusCardGrid()
             }
@@ -82,25 +89,6 @@ fun WelcomeCard(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(16.dp)
                 )
         }
-    }
-}
-
-@Composable
-fun CurrentStatusTitle(modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = stringResource(R.string.current_status),
-            color = colorResource(id = R.color.dark_gray),
-            textAlign = TextAlign.Center,
-            lineHeight = 5.85.em,
-            style = TextStyle(
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Black
-            ),
-            modifier = modifier
-        )
     }
 }
 
