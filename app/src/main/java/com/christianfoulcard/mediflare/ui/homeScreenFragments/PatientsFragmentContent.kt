@@ -46,7 +46,7 @@ import com.christianfoulcard.mediflare.composables.Text
 import com.christianfoulcard.mediflare.models.PatientCardData
 import com.christianfoulcard.mediflare.models.PatientStatusOrCare
 import com.christianfoulcard.mediflare.ui.viewmodels.PatientViewModel
-
+import com.christianfoulcard.mediflare.utils.DateUtil
 
 
 @Composable
@@ -228,8 +228,8 @@ fun PatientInfoView(patient: PatientCardData) {
                         Spacer(Modifier.padding(16.dp))
                         Text(text = "ID: ${patient.patientId}")
                         Text(text = "Age: ${patient.age}")
-                        Text(text = "Admission Date: ${patient.admissionDate}")
-                        Text(text = "Last Updated: ${patient.lastUpdated}")
+                        Text(text = "Admission Date: ${DateUtil().formatDate(patient.admissionDate)}")
+                        Text(text = "Last Updated: ${DateUtil().formatDate(patient.lastUpdated)}")
                         Text(text = "Diagnosis: ${patient.illnessDiagnosis}")
                         Text(text = when (val statusOrCare = patient.statusOrCaredForBy) {
                             is PatientStatusOrCare.Status -> statusOrCare.statusUpdate

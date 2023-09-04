@@ -1,5 +1,6 @@
 package com.christianfoulcard.mediflare.models
 
+import com.christianfoulcard.mediflare.utils.DateUtil
 import java.util.Date
 
 data class PatientCardData(
@@ -25,8 +26,8 @@ val firstPatientCard = PatientCardData(
     PatientStatusOrCare.AttendingStaff("In the care of Sarah Thompson"),
     45,
     "Male",
-    null,
-    null,
+    DateUtil().randomDateFromToday(),
+    DateUtil().randomDateFromTodayPlusXMinutes(),
     "Stable",
     vitalSignsFirstPatient,
     treatmentPlanFirstPatient
@@ -40,8 +41,8 @@ val secondPatientCard = PatientCardData(
     PatientStatusOrCare.AttendingStaff("In the care of Karl Rock"),
     32,
     "Female",
-    null,
-    null,
+    DateUtil().randomDateFromToday(),
+    DateUtil().randomDateFromTodayPlusXMinutes(),
     "Under Observation",
     vitalSignsSecondPatient,
     treatmentPlanSecondPatient
@@ -55,8 +56,8 @@ val thirdPatientCard = PatientCardData(
     PatientStatusOrCare.Status("Status: Stable"),
     50,
     "Male",
-    null,
-    null,
+    DateUtil().randomDateFromToday(),
+    DateUtil().randomDateFromTodayPlusXMinutes(),
     "Critical",
     vitalSignsThirdPatient,
     treatmentPlanThirdPatient
