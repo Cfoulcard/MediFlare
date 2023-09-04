@@ -2,6 +2,7 @@ package com.christianfoulcard.mediflare.ui.homeScreenFragments
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,12 +10,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -30,10 +33,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Text
@@ -41,16 +47,20 @@ import com.christianfoulcard.mediflare.models.PatientCardData
 import com.christianfoulcard.mediflare.models.PatientStatusOrCare
 import com.christianfoulcard.mediflare.ui.viewmodels.PatientViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+
 @Composable
 fun PatientsFragmentContent() {
 
     val viewModel: PatientViewModel = viewModel()
     val filteredPatients = viewModel.filteredPatients.value
-
+    var isDrawerOpen by remember { mutableStateOf(false) }
+    var selectedPatient by remember { mutableStateOf<PatientCardData?>(null) }
 
     Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth(0.85F)
@@ -62,11 +72,27 @@ fun PatientsFragmentContent() {
                 Spacer(Modifier.padding(16.dp))
                 LazyColumn {
                     items(filteredPatients.size) { patient ->
-                        PatientCard(filteredPatients[patient])
+                        PatientCard(filteredPatients[patient]) {
+                            isDrawerOpen = true
+                            selectedPatient = filteredPatients[patient]
+                        }
                     }
-
                 }
             }
+        }
+        selectedPatient?.let { PatientInfoDialog(isDrawerOpen, it) { isDrawerOpen = false } }
+    }
+}
+
+@Composable
+fun PatientInfoDialog(isDrawerOpen: Boolean, patient: PatientCardData, onDismiss: () -> Unit) {
+    if (isDrawerOpen) {
+        Dialog(
+            onDismissRequest = onDismiss,
+            properties = DialogProperties(dismissOnBackPress = true,
+                dismissOnClickOutside = true,
+                usePlatformDefaultWidth = false)) {
+            PatientInfoView(patient)
         }
     }
 }
@@ -98,7 +124,8 @@ private fun SearchPatientTextField(
 }
 
 @Composable
-fun PatientCard(patient: PatientCardData) {
+fun PatientCard(patient: PatientCardData, onClick: () -> Unit) {
+
     val gradientBrush = Brush.horizontalGradient(
         colors = listOf(
             colorResource(id = R.color.gradient_dark_blue),  // Start color
@@ -110,6 +137,7 @@ fun PatientCard(patient: PatientCardData) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
+            .clickable(onClick = { onClick() })
     ) {
         Box(
             modifier = Modifier
@@ -117,6 +145,7 @@ fun PatientCard(patient: PatientCardData) {
                 .background(brush = gradientBrush)
                 .padding(12.dp),
         ) {
+
             Row(
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -157,13 +186,44 @@ fun PatientCard(patient: PatientCardData) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PatientInfoView() {
+fun PatientInfoView(patient: PatientCardData) {
+    // Calculate the desired height
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+    val desiredHeight = screenHeight * 0.85f
 
-        ModalNavigationDrawer(drawerContent = { /*TODO*/ }) {
+    ModalNavigationDrawer(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(desiredHeight),
+        scrimColor = Color.Black.copy(alpha = 0.75f),
+        drawerContent = { /* Empty content here */ },
 
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(desiredHeight)
+                .clip(RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            ModalDrawerSheet(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.TopCenter),
+                drawerShape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(Modifier.padding(16.dp))
+                    Text.FragmentTitle(patient.patientName)
+                }
+            }
         }
-
     }
+}
 
 
 
