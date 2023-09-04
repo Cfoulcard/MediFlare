@@ -1,8 +1,11 @@
 package com.christianfoulcard.mediflare.ui.homeScreenFragments
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +14,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -32,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Text
 import com.christianfoulcard.mediflare.models.PatientCardData
+import com.christianfoulcard.mediflare.models.PatientStatusOrCare
 import com.christianfoulcard.mediflare.ui.viewmodels.PatientViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,12 +56,10 @@ fun PatientsFragmentContent() {
                     .fillMaxWidth(0.85F)
             ) {
                 Spacer(Modifier.padding(32.dp))
-
                 Text.FragmentTitle(stringResource(id = R.string.patient_title), Modifier.fillMaxWidth())
                 Spacer(Modifier.padding(16.dp))
-
                 SearchPatientTextField(viewModel)
-
+                Spacer(Modifier.padding(16.dp))
                 LazyColumn {
                     items(filteredPatients.size) { patient ->
                         PatientCard(filteredPatients[patient])
@@ -94,18 +99,75 @@ private fun SearchPatientTextField(
 
 @Composable
 fun PatientCard(patient: PatientCardData) {
+    val gradientBrush = Brush.horizontalGradient(
+        colors = listOf(
+            colorResource(id = R.color.gradient_dark_blue),  // Start color
+            colorResource(id = R.color.gradient_light_blue)   // End color
+        )
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        Text(text = patient.patientName)
-        Text(text = patient.illnessDiagnosis)
-        Text(text = patient.statusOrCaredForBy)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(brush = gradientBrush)
+                .padding(12.dp),
+        ) {
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(
+                        text = patient.patientName,
+                        style = MaterialTheme.typography.titleSmall,
+                        color = colorResource(id = R.color.white)
+                    )
+
+                    Text(
+                        text = "Illness: ${patient.illnessDiagnosis}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = colorResource(id = R.color.white)
+                    )
+
+                    Text(
+                        text = when (val statusOrCare = patient.statusOrCaredForBy) {
+                            is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
+                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName },
+                        style = MaterialTheme.typography.bodySmall,
+                        color = colorResource(id = R.color.white)
+                    )
+                }
+
+                Text(
+                    text = "ID: ${patient.patientId}",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = colorResource(id = R.color.white),
+                    modifier = Modifier.align(Alignment.Top)
+                )
+            }
+        }
     }
 }
 
-@Preview(showBackground = true)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PatientInfoView() {
+
+        ModalNavigationDrawer(drawerContent = { /*TODO*/ }) {
+
+        }
+
+    }
+
+
+
+    @Preview(showBackground = true)
 @Composable
 fun PreviewPatientScreen() {
     PatientsFragmentContent()

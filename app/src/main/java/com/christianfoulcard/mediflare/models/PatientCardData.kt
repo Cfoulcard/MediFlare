@@ -7,12 +7,14 @@ data class PatientCardData(
     val patientId: String,
     val patientName: String,
     val illnessDiagnosis: String,
-    val statusOrCaredForBy: String,
+    val statusOrCaredForBy: PatientStatusOrCare,
     val age: Int,
     val gender: String,
     val admissionDate: Date?,
     val lastUpdated: Date?,
     val state: String,
+    val vitalSigns: VitalSigns?, // This can be nullable if not all patients have vital signs recorded,
+    val treatmentPlan: TreatmentPlan
 )
 
 val firstPatientCard = PatientCardData(
@@ -20,12 +22,14 @@ val firstPatientCard = PatientCardData(
     "PT123456",
     "James Anderson",
     "Pneumonia",
-    "Sarah Thompson",
+    PatientStatusOrCare.AttendingStaff("In the care of Sarah Thompson"),
     45,
     "Male",
     null,
     null,
-    "Stable"
+    "Stable",
+    vitalSignsFirstPatient,
+    treatmentPlanFirstPatient
 )
 
 val secondPatientCard = PatientCardData(
@@ -33,12 +37,14 @@ val secondPatientCard = PatientCardData(
     "PT654321",
     "Emily Roberts",
     "Bronchitis",
-    "John Miller",
+    PatientStatusOrCare.AttendingStaff("In the care of Karl Rock"),
     32,
     "Female",
     null,
     null,
-    "Under Observation"
+    "Under Observation",
+    vitalSignsSecondPatient,
+    treatmentPlanSecondPatient
 )
 
 val thirdPatientCard = PatientCardData(
@@ -46,10 +52,12 @@ val thirdPatientCard = PatientCardData(
     "PT789012",
     "Michael Brown",
     "Asthma",
-    "Nancy Wilson",
+    PatientStatusOrCare.Status("Status: Stable"),
     50,
     "Male",
     null,
     null,
-    "Critical"
+    "Critical",
+    vitalSignsThirdPatient,
+    treatmentPlanThirdPatient
 )
