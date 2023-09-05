@@ -126,12 +126,40 @@ private fun SearchPatientTextField(
 @Composable
 fun PatientCard(patient: PatientCardData, onClick: () -> Unit) {
 
-    val gradientBrush = Brush.horizontalGradient(
+    val gradientBrushInCare = Brush.horizontalGradient(
         colors = listOf(
             colorResource(id = R.color.gradient_dark_blue),  // Start color
             colorResource(id = R.color.gradient_light_blue)   // End color
         )
     )
+
+    val gradientBrushAwaitingCare = Brush.horizontalGradient(
+        colors = listOf(
+            colorResource(id = R.color.gradient_dark_pink),  // Start color
+            colorResource(id = R.color.gradient_light_pink)   // End color
+        )
+    )
+
+    val gradientBrushCleared = Brush.horizontalGradient(
+        colors = listOf(
+            colorResource(id = R.color.gradient_dark_green),  // Start color
+            colorResource(id = R.color.gradient_light_green)   // End color
+        )
+    )
+
+    val gradientBrushAttendingStaff = Brush.horizontalGradient(
+        colors = listOf(
+            colorResource(id = R.color.gradient_dark_purple),  // Start color
+            colorResource(id = R.color.gradient_light_purple)   // End color
+        )
+    )
+
+    val gradient = when (patient.statusOrCaredForBy) {
+        is PatientStatusOrCare.Status -> gradientBrushInCare
+        is PatientStatusOrCare.AttendingStaff -> gradientBrushAttendingStaff
+        is PatientStatusOrCare.Cleared -> gradientBrushCleared
+        is PatientStatusOrCare.AwaitingCare -> gradientBrushAwaitingCare
+    }
 
     Card(
         modifier = Modifier
@@ -142,7 +170,7 @@ fun PatientCard(patient: PatientCardData, onClick: () -> Unit) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(brush = gradientBrush)
+                .background(brush = gradient)
                 .padding(12.dp),
         ) {
 
@@ -167,7 +195,9 @@ fun PatientCard(patient: PatientCardData, onClick: () -> Unit) {
                     Text(
                         text = when (val statusOrCare = patient.statusOrCaredForBy) {
                             is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
-                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName },
+                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName
+                            is PatientStatusOrCare.Cleared -> statusOrCare.clearedBy
+                            is PatientStatusOrCare.AwaitingCare -> statusOrCare.awaitingCare},
                         style = MaterialTheme.typography.bodySmall,
                         color = colorResource(id = R.color.white)
                     )
@@ -233,7 +263,9 @@ fun PatientInfoView(patient: PatientCardData) {
                         Text(text = "Diagnosis: ${patient.illnessDiagnosis}")
                         Text(text = when (val statusOrCare = patient.statusOrCaredForBy) {
                             is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
-                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName })
+                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName
+                            is PatientStatusOrCare.Cleared -> statusOrCare.clearedBy
+                            is PatientStatusOrCare.AwaitingCare -> statusOrCare.awaitingCare})
                         Spacer(Modifier.padding(16.dp))
                         Text(text = "Vital Signs:")
                         Text(text = "•\t Temperature: ${patient.vitalSigns?.temperature}")

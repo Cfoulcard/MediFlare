@@ -9,6 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gradient_light_blue">#FF6DD3FF</color>
     <color name="gradient_dark_blue">#FF0098DA</color>
+    <color name="gradient_light_pink">#FFFF6DC5</color>
+    <color name="gradient_dark_pink">#FFC900DA</color>
+    <color name="gradient_light_green">#FF2EAF00</color>
+    <color name="gradient_dark_green">#FF025F00</color>
+    <color name="gradient_dark_purple">#FF1B0088</color>
+    <color name="gradient_light_purple">#FF3300FF</color>
 
     <color name="dark_gray">#FF3F3F3F</color>
     <color name="logo_blue">#FF0098DA</color>
