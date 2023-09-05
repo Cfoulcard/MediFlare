@@ -50,6 +50,13 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
     ),
+    titleLarge = TextStyle(
+        fontFamily = LatoBlack,
+        fontWeight = FontWeight.Black,
+        fontSize = 24.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp,
+    ),
     bodySmall = TextStyle(
         fontFamily = LatoRegular,
         fontWeight = FontWeight.Medium,

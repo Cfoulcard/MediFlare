@@ -35,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.BottomNavTabs.EvenlySpacedBottomNavigationBar
 import com.christianfoulcard.mediflare.ui.homeScreenFragments.DashboardFragmentContent
+import com.christianfoulcard.mediflare.ui.homeScreenFragments.ManagementFragmentContent
 import com.christianfoulcard.mediflare.ui.homeScreenFragments.PatientsFragmentContent
 import com.christianfoulcard.mediflare.utils.BottomNavRoutes
 import com.christianfoulcard.mediflare.utils.LogUtils.TAG
@@ -55,15 +56,12 @@ object BottomNavTabs {
                 NavHost(navController, startDestination = BottomNavRoutes.DASHBOARD.route) {
                     composable(BottomNavRoutes.DASHBOARD.route) {
                         DashboardFragmentContent()
-                        Log.d(TAG, "MainScreenWithBottomNav: test dashboard")
                     }
                     composable(BottomNavRoutes.PATIENTS.route) {
                         PatientsFragmentContent()
-                        Log.d(TAG, "MainScreenWithBottomNav: test patients")
                     }
                     composable(BottomNavRoutes.MANAGEMENT.route) {
-                        DashboardFragmentContent()
-                        Log.d(TAG, "MainScreenWithBottomNav: test management")
+                        ManagementFragmentContent()
                     }
                 }
             }
@@ -107,7 +105,7 @@ object BottomNavTabs {
                                 launchSingleTop = true
                             }
                             Log.d("BottomAppBar", "nav index route is ${navItems[index].route}")
-                            Log.d("BottomAppBar", "selectedTab is ${selectedTab}")
+                            Log.d("BottomAppBar", "selectedTab is $selectedTab")
                         },
                         modifier = Modifier.weight(1f), // This ensures each item is evenly spaced
                         inactiveColor = colorResource(id = R.color.light_gray),

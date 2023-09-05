@@ -5,29 +5,32 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import com.christianfoulcard.MediFlare.Companion.globalAppContext
 import com.christianfoulcard.mediflare.R
-import com.christianfoulcard.mediflare.models.PatientCardData
-import com.christianfoulcard.mediflare.models.PatientStatusOrCare
+import com.christianfoulcard.mediflare.composables.Buttons.ManagementCardButtons
 import com.christianfoulcard.mediflare.ui.HomeScreenActivity
-import com.christianfoulcard.mediflare.ui.LoginScreenActivity
 
 object Buttons {
 
@@ -65,4 +68,72 @@ object Buttons {
             Text(text = "Contact $string", style = MaterialTheme.typography.titleSmall)
         }
     }
+
+    @Composable
+    fun ManagementCardButtons(title1: String, title2: String, onClickString: String) {
+
+        val gradient = Brush.horizontalGradient(
+            colors = listOf(
+                colorResource(id = R.color.gradient_dark_blue),  // Start color
+                colorResource(id = R.color.gradient_light_blue)   // End color
+            )
+        )
+
+        val gradientRed = Brush.verticalGradient(
+            colors = listOf(
+                colorResource(id = R.color.gradient_light_red),  // Start color
+                colorResource(id = R.color.gradient_dark_red)   // End color
+            )
+        )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .clickable(onClick = { Toast.makeText(globalAppContext, onClickString, LENGTH_SHORT).show() })
+        ) {
+            Box(
+                modifier = Modifier
+                    .background(brush = when (title2) {
+                        "Alerts" -> { gradientRed }
+                        else -> { gradient }
+                    })
+                    .fillMaxWidth()
+                    .padding(12.dp)
+                    .height(75.dp),
+                contentAlignment = Alignment.Center
+            ) {
+
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                    
+                    if (title1 == "") {
+                        Text(
+                            text = title2,
+                            style = MaterialTheme.typography.titleLarge,
+                            color = colorResource(id = R.color.white)
+                        )
+                    } else {
+                        Text(
+                            text = title1,
+                            style = MaterialTheme.typography.titleSmall,
+                            color = colorResource(id = R.color.white)
+                        )
+
+                        Text(
+                            text = title2,
+                            style = MaterialTheme.typography.titleLarge,
+                            color = colorResource(id = R.color.white)
+                        )
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCard() {
+    ManagementCardButtons("Test", "Test2", "")
 }

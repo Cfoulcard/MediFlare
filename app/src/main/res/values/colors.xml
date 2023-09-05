@@ -15,6 +15,8 @@
     <color name="gradient_dark_green">#FF025F00</color>
     <color name="gradient_dark_purple">#FF1B0088</color>
     <color name="gradient_light_purple">#FF3300FF</color>
+    <color name="gradient_light_red">#FFFFAAAA</color>
+    <color name="gradient_dark_red">#FFFF6A6A</color>
 
     <color name="dark_gray">#FF3F3F3F</color>
     <color name="logo_blue">#FF0098DA</color>

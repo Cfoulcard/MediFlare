@@ -1,16 +1,11 @@
 package com.christianfoulcard.mediflare.ui.viewmodels
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.christianfoulcard.MediFlare.Companion.globalAppContext
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.models.StatusCardData
-import com.christianfoulcard.mediflare.ui.homeScreenFragments.StatusCard
 
 
 class DashboardViewModel() : ViewModel() {
