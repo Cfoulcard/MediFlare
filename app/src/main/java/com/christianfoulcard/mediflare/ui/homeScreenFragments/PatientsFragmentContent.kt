@@ -42,6 +42,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.christianfoulcard.mediflare.R
+import com.christianfoulcard.mediflare.composables.Buttons.ContactButton
 import com.christianfoulcard.mediflare.composables.Text
 import com.christianfoulcard.mediflare.models.PatientCardData
 import com.christianfoulcard.mediflare.models.PatientStatusOrCare
@@ -195,7 +196,7 @@ fun PatientCard(patient: PatientCardData, onClick: () -> Unit) {
                     Text(
                         text = when (val statusOrCare = patient.statusOrCaredForBy) {
                             is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
-                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName
+                            is PatientStatusOrCare.AttendingStaff -> "In the care of ${statusOrCare.staffName}"
                             is PatientStatusOrCare.Cleared -> statusOrCare.clearedBy
                             is PatientStatusOrCare.AwaitingCare -> statusOrCare.awaitingCare},
                         style = MaterialTheme.typography.bodySmall,
@@ -263,7 +264,7 @@ fun PatientInfoView(patient: PatientCardData) {
                         Text(text = "Diagnosis: ${patient.illnessDiagnosis}")
                         Text(text = when (val statusOrCare = patient.statusOrCaredForBy) {
                             is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
-                            is PatientStatusOrCare.AttendingStaff -> statusOrCare.staffName
+                            is PatientStatusOrCare.AttendingStaff -> "In the care of ${statusOrCare.staffName}"
                             is PatientStatusOrCare.Cleared -> statusOrCare.clearedBy
                             is PatientStatusOrCare.AwaitingCare -> statusOrCare.awaitingCare})
                         Spacer(Modifier.padding(16.dp))
@@ -279,6 +280,12 @@ fun PatientInfoView(patient: PatientCardData) {
                         Text(text = "•\t Name: ${patient.treatmentPlan.antibiotics.name}")
                         Text(text = "•\t Dosage: ${patient.treatmentPlan.antibiotics.dosage}")
                         Text(text = "•\t Frequency: ${patient.treatmentPlan.antibiotics.frequency}")
+                        Spacer(Modifier.padding(16.dp))
+                        when (val statusOrCare = patient.statusOrCaredForBy) {
+                            is PatientStatusOrCare.Status -> statusOrCare.statusUpdate
+                            is PatientStatusOrCare.AttendingStaff -> ContactButton(statusOrCare.staffName)
+                            is PatientStatusOrCare.Cleared -> statusOrCare.clearedBy
+                            is PatientStatusOrCare.AwaitingCare -> statusOrCare.awaitingCare}
                     }
                 }
             }
