@@ -17,9 +17,9 @@
 - Figma (UI Design)
 - This project combines modern Android app development techniques and tools to create a user-friendly medical application.
 
-![LoginScreen]https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png
-![LoginLoadingScreen]https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png
-![Dashboard]https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png
-![Patients]https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png
-![PatientsInfo]https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png
-![Management]https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png
+![LoginScreen](https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png)
+![LoginLoadingScreen](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png)
+![Dashboard](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png)
+![Patients](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png)
+![PatientsInfo](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png)
+![Management](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png)
