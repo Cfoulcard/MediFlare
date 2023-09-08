@@ -26,7 +26,11 @@
 </div>
 
 <div style="display: flex;">
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png" />
    <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png" />
+</div>
+
+<div style="display: flex;">
    <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png" />
    <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png" />
 </div>
