@@ -31,6 +31,8 @@ import com.christianfoulcard.MediFlare.Companion.globalAppContext
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Buttons.ManagementCardButtons
 import com.christianfoulcard.mediflare.ui.HomeScreenActivity
+import com.christianfoulcard.mediflare.ui.LoginLoadingScreen
+import com.christianfoulcard.mediflare.ui.LoginScreenActivity
 
 object Buttons {
 
@@ -38,7 +40,7 @@ object Buttons {
     fun LoginButton(context: Context, activity: Activity) {
         Button(
             onClick = {
-                activity.startActivity(Intent(context, HomeScreenActivity::class.java))
+                activity.startActivity(Intent(context, LoginLoadingScreen::class.java))
                 activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 activity.finish()
             },

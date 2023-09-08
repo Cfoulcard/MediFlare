@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,8 +28,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.christianfoulcard.mediflare.R
+import com.christianfoulcard.mediflare.composables.TextAnimations.LoadingTextAnimation
 
 object Images {
 
@@ -70,34 +74,21 @@ object Images {
 
         val mediFlareLogo = painterResource(id = R.drawable.mediflare_logo)
 
-        val infiniteTransition = rememberInfiniteTransition(label = "MediaFlare Animation")
-        val alpha by infiniteTransition.animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(2000, easing = FastOutSlowInEasing),
-                repeatMode = RepeatMode.Reverse
-            ), label = "MediaFlare Alpha"
-        )
-
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Box(
-                contentAlignment = Alignment.TopCenter
+            Column(
+                modifier = Modifier.align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
                     painter = mediFlareLogo,
                     contentDescription = "MediFlare Logo Fade Animation",
-                    modifier = Modifier.size(width = screenWidth / 2, height = screenHeight / 2).alpha(alpha),
+                    modifier = Modifier.wrapContentSize(),
                     contentScale = ContentScale.Fit
                 )
-                Text(
-                    text = "Loading...",
-                    color = Color.DarkGray,
-                    modifier = Modifier.align(Alignment.BottomCenter)
-                )
+                LoadingTextAnimation()
             }
         }
     }

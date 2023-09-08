@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.christianfoulcard.mediflare.ui.theme.LatoBlack
 import kotlinx.coroutines.delay
 
 object TextAnimations {
@@ -48,7 +49,23 @@ object TextAnimations {
     @Composable
     fun LoadingTextAnimation() {
         val dotCount = animatedDotCount()
-        Text(text = "Loading${".".repeat(dotCount)}", fontSize = 24.sp)
+
+        val maxDotCount = 3 // Maximum number of dots you expect
+
+        val loadingText = buildString {
+            append("Logging In")
+            append(".".repeat(dotCount))
+            repeat(maxDotCount - dotCount) {
+                append(" ")
+            }
+        }
+
+        Text(
+            text = loadingText,
+            fontSize = 24.sp,
+            fontFamily = LatoBlack,
+
+        )
     }
 
     @Composable
@@ -62,6 +79,7 @@ object TextAnimations {
         }
         return dotState.value
     }
+
 
 
 }
