@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.christianfoulcard.MediFlare
 import com.christianfoulcard.mediflare.composables.Buttons.LoginButton
 import com.christianfoulcard.mediflare.composables.Images.MediFlareLogo
 import com.christianfoulcard.mediflare.composables.TextFields.PasswordTextField
@@ -29,13 +30,13 @@ class LoginScreenActivity : ComponentBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DisplayLayout(this, this)
+            DisplayLoginScreenLayout(this, this)
         }
     }
 }
 
 @Composable
-fun DisplayLayout(context: Context, activity: Activity) {
+fun DisplayLoginScreenLayout(context: Context, activity: Activity) {
     MediFlareTheme {
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
         val offsetHeight = screenHeight * 0.33f
@@ -61,7 +62,7 @@ fun DisplayLayout(context: Context, activity: Activity) {
             }
             Box(contentAlignment = Alignment.BottomCenter) {
                 Text(
-                    "Version 1.0.0",
+                    "Version ${MediFlare().getAppVersion(context)}",
                     modifier = Modifier.padding(64.dp)
                 )
             }
@@ -73,5 +74,5 @@ fun DisplayLayout(context: Context, activity: Activity) {
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    DisplayLayout(LoginScreenActivity(), LoginScreenActivity())
+    DisplayLoginScreenLayout(LoginScreenActivity(), LoginScreenActivity())
 }

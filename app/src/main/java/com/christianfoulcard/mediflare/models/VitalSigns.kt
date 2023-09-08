@@ -84,8 +84,8 @@ val vitalSignsCOPD = VitalSigns(
     temperature = 98.6F,
     heartRate = 82,
     bloodPressure = "120/80 mmHg",
-    respiratoryRate = 24, // Increased because of difficulty in breathing
-    oxygenSaturation = 90 // Decreased O2 saturation
+    respiratoryRate = 24,
+    oxygenSaturation = 90
 )
 
 val vitalSignsOsteoporosis = VitalSigns(

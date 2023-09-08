@@ -36,6 +36,12 @@ import com.christianfoulcard.mediflare.ui.LoginScreenActivity
 
 object Buttons {
 
+    /**
+     * This is a pseudo login button to demonstrate what could happen in an
+     * actual real scenario. Simply put the user would transition to a loading screen
+     * (in which data would load for the user in the background) and then the
+     * home screen would load afterwards
+     */
     @Composable
     fun LoginButton(context: Context, activity: Activity) {
         Button(

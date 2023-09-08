@@ -11,12 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Buttons.ManagementCardButtons
-import com.christianfoulcard.mediflare.composables.Text
 
+/**
+ * Constructs the content for the ManagementFragment.
+ * This composable function defines the user interface components for the management console,
+ * including various card buttons. It provides an overview of the available management features.
+ */
 @Composable
 fun ManagementFragmentContent() {
 

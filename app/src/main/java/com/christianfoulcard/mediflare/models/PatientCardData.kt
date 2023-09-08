@@ -3,6 +3,13 @@ package com.christianfoulcard.mediflare.models
 import com.christianfoulcard.mediflare.utils.DateUtil
 import java.util.Date
 
+/**
+ * For this app, this is our main data class we'll use. The values are
+ * a mix of primitive fields, other data classes, and sealed classes
+ *
+ * In a real world scenario we'd use an API get/post method for
+ * filling data in the app or pushing data to the server
+ * */
 data class PatientCardData(
     val id: String,
     val patientId: String,

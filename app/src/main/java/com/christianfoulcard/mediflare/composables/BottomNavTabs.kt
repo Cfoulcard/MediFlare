@@ -42,6 +42,11 @@ import com.christianfoulcard.mediflare.utils.LogUtils.TAG
 
 object BottomNavTabs {
 
+    /**
+     * This is responsible for showcasing our custom bottom nav bar on the main screen.
+     * The nav host will be the controller used to help us navigate to different fragments fluidly.
+     * By default we will land on the dashboard
+     */
     @Composable
     fun MainScreenWithBottomNav() {
         val navController = rememberNavController()
@@ -69,6 +74,11 @@ object BottomNavTabs {
         }
     }
 
+    /**
+     * We will use this to keep track of our selected tabs, define our images for the bottom nav bar,
+     * And list what items will be used to navigate to (patients, dashboard, management). Properties of
+     * the nav bar are also defined.
+     */
     @Composable
     fun EvenlySpacedBottomNavigationBar(navController: NavController) {
         // Keeping track of the selected tab
@@ -117,6 +127,9 @@ object BottomNavTabs {
 
     }
 
+    /**
+     * Helps us define what each item on the bottom nav bar is customized
+     */
     @Composable
     fun BottomNavigationItem(
         iconResId: Int,

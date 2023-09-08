@@ -16,6 +16,7 @@ import com.christianfoulcard.mediflare.R
 
 object Text {
 
+    /** Displays our header text for the fragments */
     @Composable
     fun FragmentTitle(title: String, modifier: Modifier = Modifier) {
         Box(

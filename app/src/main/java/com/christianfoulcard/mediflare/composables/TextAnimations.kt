@@ -50,7 +50,7 @@ object TextAnimations {
     fun LoadingTextAnimation() {
         val dotCount = animatedDotCount()
 
-        val maxDotCount = 3 // Maximum number of dots you expect
+        val maxDotCount = 3
 
         val loadingText = buildString {
             append("Logging In")
@@ -68,6 +68,7 @@ object TextAnimations {
         )
     }
 
+    /** Thread safe animated dots to help update the UI */
     @Composable
     fun animatedDotCount(): Int {
         val dotState = remember { mutableStateOf(1) }

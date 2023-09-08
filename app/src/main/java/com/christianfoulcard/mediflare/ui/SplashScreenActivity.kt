@@ -23,15 +23,9 @@ class SplashScreenActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SystemUi().hideSystemUIFull(this)
-
         setContent {
-            MediFlareTheme {
-                Column {
-                    AnimatedLogoAlphaImageFullScreen()
-                }
-            }
+            DisplaySplashScreenLayout()
         }
-
         navigateToLoginScreen()
     }
 
@@ -43,13 +37,23 @@ class SplashScreenActivity: ComponentActivity() {
             finish()
         }
     }
+}
+
+    @Composable
+    fun DisplaySplashScreenLayout() {
+            MediFlareTheme {
+                Column {
+                    AnimatedLogoAlphaImageFullScreen()
+                }
+
+        }
+    }
 
     @Preview(showBackground = true)
     @Composable
-    fun Preview() {
+    fun PreviewSplashScreen() {
         MediFlareTheme {
             MediFlareLogoFullScreen()
         }
     }
 
-}

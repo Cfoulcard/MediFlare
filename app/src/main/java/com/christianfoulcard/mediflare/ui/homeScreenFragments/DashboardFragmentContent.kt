@@ -32,18 +32,21 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Text.FragmentTitle
 import com.christianfoulcard.mediflare.ui.viewmodels.DashboardViewModel
 
+/**
+ * Constructs the content for the DashboardFragment.
+ * This function sets up the user interface components for the dashboard, including
+ * the welcome card, fragment title, and status card grid. It also associates
+ * the view model for managing dashboard data.
+ */
 @Composable
 fun DashboardFragmentContent() {
 
@@ -57,9 +60,9 @@ fun DashboardFragmentContent() {
             ) {
                 Spacer(Modifier.padding(32.dp))
                 WelcomeCard()
-                Spacer(Modifier.padding(16.dp))
+                Spacer(Modifier.padding(8.dp))
                 FragmentTitle(stringResource(id = R.string.current_status), Modifier.fillMaxWidth())
-                Spacer(Modifier.padding(16.dp))
+                Spacer(Modifier.padding(8.dp))
                 StatusCardGrid(viewModel)
             }
         }

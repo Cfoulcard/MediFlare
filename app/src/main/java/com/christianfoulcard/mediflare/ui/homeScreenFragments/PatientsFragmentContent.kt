@@ -49,7 +49,13 @@ import com.christianfoulcard.mediflare.models.PatientStatusOrCare
 import com.christianfoulcard.mediflare.ui.viewmodels.PatientViewModel
 import com.christianfoulcard.mediflare.utils.DateUtil
 
-
+/**
+ * Constructs the content for the PatientsFragment.
+ * This composable function defines the user interface components for displaying a list of patients,
+ * including a search field, patient cards, and a patient information dialog.
+ *
+ * @param viewModel The view model for managing patient data and interactions.
+ */
 @Composable
 fun PatientsFragmentContent() {
 

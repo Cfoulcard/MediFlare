@@ -29,10 +29,19 @@ class DashboardViewModel() : ViewModel() {
     private val _statusCards = mutableStateOf(initialStatusCards)
     val statusCards: State<List<StatusCardData>> = _statusCards
 
+    /**
+     * Sorts the list of status cards in ascending order based on their unique identifiers (IDs).
+     * This function updates the [_statusCards] mutable state to reflect the sorted order.
+     */
     fun sortStatusCards() {
         _statusCards.value = _statusCards.value.sortedBy { it.id }
     }
 
+    /**
+     * Resets the list of status cards to its initial state.
+     * This function restores the [_statusCards] mutable state to its original content,
+     * effectively undoing any changes made to the list.
+     */
     fun resetStatusCards() {
         _statusCards.value = initialStatusCards
     }

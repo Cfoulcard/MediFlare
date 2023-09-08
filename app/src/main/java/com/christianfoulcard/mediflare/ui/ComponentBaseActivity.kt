@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import com.christianfoulcard.mediflare.utils.SystemUi
 
+/** Helper class that extends our component activities */
 abstract class ComponentBaseActivity: ComponentActivity() {
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-           // SystemUi().hideSystemUIFull(this)
             SystemUi().whiteStatusAndNavBars(this)
         }
 

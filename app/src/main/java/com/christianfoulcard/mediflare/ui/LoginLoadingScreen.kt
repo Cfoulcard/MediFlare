@@ -23,7 +23,6 @@ class LoginLoadingScreen : ComponentBaseActivity() {
             DisplayLoginLoadingScreen()
             navigateToHomeScreen()
         }
-
     }
 
     private fun navigateToHomeScreen() {
@@ -42,8 +41,6 @@ fun DisplayLoginLoadingScreen() {
         AnimatedLogoAlphaImageFullScreenLoading()
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
