@@ -20,17 +20,16 @@
 
 
 <div style="display: flex;">
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png" />
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png" />
-   <img src=https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png" width="250"/>
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png" width="250"/>
 </div>
 
 <div style="display: flex;">
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png" />
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png" width="250"/>
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png" width="250"/>
 </div>
 
 <div style="display: flex;">
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png" />
-   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png" width="250"/>
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png" width="250"/>
 </div>
