@@ -23,3 +23,8 @@
 ![Patients](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png)
 ![PatientsInfo](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png)
 ![Management](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png)
+
+<div style="display: flex;">
+   <img src="h[ttps://example.com/image1.jpg](https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png)" />
+   <img src="[https://example.com/image2.jpg](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png)https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png" />
+</div>
