@@ -17,14 +17,16 @@
 - Figma (UI Design)
 - This project combines modern Android app development techniques and tools to create a user-friendly medical application.
 
-![LoginScreen](https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png)
-![LoginLoadingScreen](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png)
-![Dashboard](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png)
-![Patients](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png)
-![PatientsInfo](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png)
-![Management](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png)
+
 
 <div style="display: flex;">
-   <img src="h[ttps://example.com/image1.jpg](https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png)" />
-   <img src="[https://example.com/image2.jpg](https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png)https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/Mediflarelogin.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Login_Loading.png" />
+   <img src=https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Dashboard.png" />
+</div>
+
+<div style="display: flex;">
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patients.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Patient_Info.png" />
+   <img src="https://github.com/Cfoulcard/MediFlare/blob/main/MediFlare_Management_Console.png" />
 </div>
