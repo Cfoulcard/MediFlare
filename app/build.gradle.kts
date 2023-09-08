@@ -49,6 +49,7 @@ android {
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
+    testImplementation("junit:junit:4.12")
     val kotlinVersion = "1.10.1"
     val lifecycleRuntimeVersion = "2.6.1"
     val composeVersion = "1.7.2"

@@ -23,7 +23,7 @@ class PatientViewModel: ViewModel() {
      * information about individual patients, such as names, IDs, and medical details.
      * It serves as the starting dataset for patient-related operations in the application.
      */
-    private var _patients = listOf(
+    var _patients = listOf(
         firstPatientCard,
         secondPatientCard,
         thirdPatientCard,

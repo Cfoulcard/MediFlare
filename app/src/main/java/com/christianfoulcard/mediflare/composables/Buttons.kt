@@ -27,7 +27,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.christianfoulcard.MediFlare.Companion.globalAppContext
+import com.christianfoulcard.MediFlare
 import com.christianfoulcard.mediflare.R
 import com.christianfoulcard.mediflare.composables.Buttons.ManagementCardButtons
 import com.christianfoulcard.mediflare.ui.HomeScreenActivity
@@ -64,7 +64,7 @@ object Buttons {
     fun ContactButton(string: String) {
         Button(
             onClick = {
-                      Toast.makeText(globalAppContext, "$string's phone has received a ping from you", LENGTH_SHORT).show()
+                      Toast.makeText(MediFlare.getAppContext(), "$string's phone has received a ping from you", LENGTH_SHORT).show()
             },
             shape = RoundedCornerShape(100.dp),
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.button_blue)),
@@ -98,7 +98,7 @@ object Buttons {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
-                .clickable(onClick = { Toast.makeText(globalAppContext, onClickString, LENGTH_SHORT).show() })
+                .clickable(onClick = { Toast.makeText(MediFlare.getAppContext(), onClickString, LENGTH_SHORT).show() })
         ) {
             Box(
                 modifier = Modifier

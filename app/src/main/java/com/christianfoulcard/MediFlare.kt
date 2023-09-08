@@ -31,6 +31,9 @@ class MediFlare: Application() {
 
         /** This allows access to the application context from anywhere in the app. */
         lateinit var globalAppContext: Context
-            private set
+
+        fun getAppContext(): Context {
+            return globalAppContext
+        }
     }
 }
